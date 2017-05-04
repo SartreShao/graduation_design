@@ -8,9 +8,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KET = os.environ.get('SECRET_KEY') or 'hard to guess string'
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
-    FLASKY_MAIL_SUBJECT_PREFIX = '[shaolizhi]'
-    FLASKY_MAIL_SENDER = 'shaolizhi <shaolizhi1234@126.com>'
-    FLASK_ADMIN = os.environ.get('FLASKY_ADMIN')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     @staticmethod
     def init_app(app):
@@ -19,11 +17,6 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    MAIL_SERVER = 'smtp.googlemail.com'
-    MAIL_POST = 587
-    MAIL_USE_TLS = True
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or 'sqlite:///' + os.path.join(basedir,
                                                                                                 'data-dev.sqlite')
 
