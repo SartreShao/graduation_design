@@ -18,7 +18,9 @@ def create_app(config_name):
     bootstrap.init_app(app)
     moment.init_app(app)
     db.init_app(app)
-
+    db.app = app
+    db.drop_all()
+    db.create_all()
     # 附加路由和自定义错误界面
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
